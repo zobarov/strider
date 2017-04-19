@@ -3,6 +3,8 @@
  */
 package com.gav.quiz.strider.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,19 +36,19 @@ public class StriderMainController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody String resp(@RequestParam(name="sps", required=true) Integer sps,
-									 StairwellDTO stairwell) {
-		log.info("Got a request to climb calculation for SPS={} and stairwell: {}", sps, stairwell);
+									 @RequestParam(name="stairwell", required=true) List<Integer> stairwellFlights) {
+		log.info("Got a request to climb calculation for SPS={} and stairwell: {}", sps, stairwellFlights);
 		
 		int strideCount = 0;
 		try {
-			strideCount = striderSrv.calc(stairwell, sps);
+			StairwellDTO stairwell = new StairwellDTO(stairwellFlights);
+			strideCount = striderSrv.climpToTheTop(stairwell, sps);
 		} catch(UnableToStrideException utse) {
 			log.error("Fail to count. Cause: {}", utse.getMessage());
 			return "Can not proceed with such paramters. Cause:" + utse.getMessage() + ".";
 		}
 		log.info("Ok. Got minimum stride count: {}", strideCount);
-
-		return "Stariwell " + stairwell + " at steps=" + sps + ". Minimum strides:" + strideCount;		
+		return "Stariwell " + stairwellFlights + " at steps=" + sps + ". Minimum strides:" + strideCount;		
 	}
 
 }

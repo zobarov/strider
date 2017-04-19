@@ -38,28 +38,53 @@ public class StriderMainControllerTest {
     }
 	
 	 @Test
-	 public void shouldBadRequestForStriderOnly() throws Exception {
+	 public void testAppNameOnly_badRequest() throws Exception {
 	        mockMvc.perform(get("/strider"))
-	                .andExpect(status().isBadRequest());	                
+	        	.andExpect(status().isBadRequest());	                
 	 }
 	 
 	 @Test
-	 public void shouldNotFoundForNonStrider() throws Exception {
+	 public void testWrongAppNameOnly_notFound() throws Exception {
 	        mockMvc.perform(get("/non-strider"))
-	                .andExpect(status().isNotFound());	                
+	        	.andExpect(status().isNotFound());	                
 	 }
 	 
 	 @Test
-	 public void shouldRequireSpsBadRequest() throws Exception {
-	        mockMvc.perform(get("/strider").param("non-sps", "3"))
-                   .andExpect(status().isBadRequest());
-	                
+	 public void testNonSpsParamOnly_badRequest() throws Exception {
+	        mockMvc.perform(get("/strider")
+	        		.param("non-sps", "3"))
+            	.andExpect(status().isBadRequest());	                
 	 }
 
 	 @Test
-	 public void shouldRequireSpsOk() throws Exception {
-	        mockMvc.perform(get("/strider").param("sps", "3"))
-                   .andExpect(status().isOk());
-	                
+	 public void testSpsParamOnly_badRequest() throws Exception {
+	        mockMvc.perform(get("/strider")
+	        		.param("sps", "3"))
+            	.andExpect(status().isBadRequest());	                
+	 }
+	 
+	 @Test
+	 public void testSpsAndStairwellParam_Ok() throws Exception {
+	        mockMvc.perform(get("/strider")
+	        		.param("sps", "3")
+	        		.param("stairwell", "1,2,3"))
+                 .andExpect(status().isOk());	                
+	 }
+	 
+	 @Test
+	 public void testSpsAndNonStairwellParam_badRequest() throws Exception {
+	        mockMvc.perform(get("/strider")
+	        		.param("sps", "3")
+	        		.param("non-stairwell", "1,2,3"))
+                 .andExpect(status().isBadRequest());	                
+	 }
+	 
+	 @Test
+	 public void testSpsAndStairwellAndExtraParam_Ok() throws Exception {
+	        mockMvc.perform(get("/strider")
+	        		.param("sps", "3")
+	        		.param("stairwell", "1,2,3")
+	        		.param("extra-param", "extra"))
+                 .andExpect(status().isOk());	                
 	 }
 }

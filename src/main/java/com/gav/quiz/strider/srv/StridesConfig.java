@@ -13,16 +13,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StridesConfig {
 	@Value("${strides.min}")
-	private Integer minStrides;
-	
+	private Integer minStrides;	
 	@Value("${strides.max}")
 	private Integer maxStrides;
+	@Value("${strides.to.turn}")
+	private Integer stridesToTurn;
 	
-	public Integer getMinStrides() {
+	public Integer minStrides() {
 		return minStrides;
 	}
 	
-	public Integer getMaxStrides() {
+	public Integer maxStrides() {
+		return maxStrides;
+	}
+	
+	public Integer stridesToTurn() {
 		return maxStrides;
 	}
 

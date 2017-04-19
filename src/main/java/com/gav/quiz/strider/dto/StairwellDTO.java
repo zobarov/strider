@@ -3,36 +3,42 @@
  */
 package com.gav.quiz.strider.dto;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author alex
  *
  */
 public class StairwellDTO {
-	private Integer[] flights;
+	private ArrayList<Integer> flights;
+	private Integer stepsOnFlightTurn = 2;
 	
 	public StairwellDTO() {
-		this.flights = new Integer[] {};
+		this.flights = new ArrayList<Integer>();
 	}
 	
+	public StairwellDTO(List<Integer> flightsList) {
+		this.flights = new ArrayList<Integer>(flightsList.size());
+		flights.addAll(flightsList);
+	}	
 	
-	public Integer[] getFlights() {
+	public List<Integer> getFlights() {
 		return flights;
 	}
 
-	public void setFligts(Integer[] flightsArray) {
+/*	public void setFligts(Integer[] flightsArray) {
 		this.flights = flightsArray;
-	}
-	
-	/*public void addFlight() {
-		Collections.
 	}*/
+	
+	public void addFlight(Integer stepsInFlight) {
+		flights.add(stepsInFlight);		
+	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb  = new StringBuilder("{Stairwell:");
-		sb.append(Arrays.toString(flights))
+		sb.append(flights)
 		  .append("}");
 		return sb.toString();
 	}

@@ -7,13 +7,14 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gav.quiz.strider.dto.StairwellDTO;
@@ -42,7 +43,7 @@ public class StridingSrvPrerequisiteTest {
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage("Nullable stairwell");
 
-		strideSrvUnderTest.calc(stairwell, 10);
+		strideSrvUnderTest.climpToTheTop(stairwell, 10);
 		//then:
 		assertTrue("In case of null stairwell should not be here.", false);
 	}
@@ -51,28 +52,28 @@ public class StridingSrvPrerequisiteTest {
 	public void shouldBeAwareOfMinFlightsAmount() {
 		//given:
 		StairwellDTO stairwell = new StairwellDTO();
-		Integer[] fligths = {};
-		stairwell.setFligts(fligths);
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("less"));
 		
-		strideSrvUnderTest.calc(stairwell, 10);		
+		strideSrvUnderTest.climpToTheTop(stairwell, 10);		
 		//then:
 		assertTrue("In case of none flights in stairwell should not be here.", false);
 	}
 	
 	@Test
 	public void shouldBeAwareOfMaxFlightsAmount() {
-		//given:
-		StairwellDTO stairwell = new StairwellDTO();
-		Integer[] fligths = {};
-		stairwell.setFligts(fligths);
+		//given:		
+		ArrayList<Integer> tempList = new ArrayList<Integer>(stairwellConfig.getMaxFlightAmount() + 1);
+		for(int i = 0; i <= stairwellConfig.getMaxFlightAmount() + 1; i++) {
+			tempList.add(i);			
+		}
+		StairwellDTO stairwell = new StairwellDTO(tempList);
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("greater"));
 			
-		strideSrvUnderTest.calc(stairwell, 10);		
+		strideSrvUnderTest.climpToTheTop(stairwell, 10);		
 		//then:
 		assertTrue("In case of enormous flights in stairwell should not be here.", false);
 	}
@@ -80,7 +81,7 @@ public class StridingSrvPrerequisiteTest {
 	@Test
 	public void shouldThrowZeroStepsPerFlight() {
 		StairwellDTO stairwell = new StairwellDTO();
-		int result = strideSrvUnderTest.calc(stairwell, 0);
+		int result = strideSrvUnderTest.climpToTheTop(stairwell, 0);
 		assertEquals("In case of null stairwell should return 0", 0, result);
 	}
 	

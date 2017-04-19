@@ -19,17 +19,16 @@ public class StriderCommonSensePreValidator implements StrideValidator {
 	@Autowired
 	private StridesConfig stridesConfig;
 	
-	public boolean validate(StairwellDTO stairwell, int stepsPerFlight) throws UnableToStrideException {
+	public void validate(StairwellDTO stairwell, int stepsPerFlight) throws UnableToStrideException {
 		if(stairwell == null) {
 			throw new UnableToStrideException("Nullable stairwell.");
 		}
-		if(stairwell.getFlights().length < stairwellConfig.getMinFlightAmount()) {
+		if(stairwell.getFlights().size() < stairwellConfig.getMinFlightAmount()) {
 			throw new UnableToStrideException("Stairwell length is less then minimum.");			
 		}
-		if(stairwell.getFlights().length > stairwellConfig.getMaxFlightAmount()) {
+		if(stairwell.getFlights().size() > stairwellConfig.getMaxFlightAmount()) {
 			throw new UnableToStrideException("Stairwell length is greater then maximum.");			
 		}
-		return true;
 	}
 	
 

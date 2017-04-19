@@ -19,12 +19,19 @@ public class StrideCalculatorSrv {
 	@Autowired
 	private StairwellConfig stairwellConfig;
 	
-	public int calc(StairwellDTO stairwell, int stepsPerFlight) {
-		boolean validToGo = prerequisiteValidator.validate(stairwell, stepsPerFlight);
-		if(!validToGo) {
-			log.warn("Prerequisite validation for Strider is not passed.");
-			return 0;
+	public int climpToTheTop(StairwellDTO stairwell, int stepsPerStride) {
+		prerequisiteValidator.validate(stairwell, stepsPerStride);
+		
+		int flightCounter = 0;
+		for(Integer stepsInFlight : stairwell.getFlights()) {
+			flightCounter++;
+			double stepsNeeded = (double) stepsInFlight / stepsPerStride;			
+			int actualStepsNeededWithRerminder = (int) Math.ceil(stepsNeeded);
+			log.debug("Actual steps needed to pass flight {}: {} / {} = {}", flightCounter, stepsInFlight, stepsPerStride, actualStepsNeededWithRerminder);
+			return actualStepsNeededWithRerminder;			
 		}
+
+		
 		
 		return 0;
 	}
