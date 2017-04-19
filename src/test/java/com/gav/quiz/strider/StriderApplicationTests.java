@@ -1,4 +1,4 @@
-package com.gav.job17.strider;
+package com.gav.quiz.strider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

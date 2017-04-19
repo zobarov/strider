@@ -1,4 +1,4 @@
-package com.gav.job17.strider;
+package com.gav.quiz.strider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
