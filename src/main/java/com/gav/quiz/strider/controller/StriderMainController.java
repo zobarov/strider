@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gav.quiz.strider.dto.StairwellDTO;
 import com.gav.quiz.strider.dto.StridesResponseVO;
-import com.gav.quiz.strider.srv.StriderClimpingService;
+import com.gav.quiz.strider.srv.StridingServiceInteface;
 import com.gav.quiz.strider.srv.UnableToStrideException;
 import com.gav.quiz.strider.util.Loggable;
 
@@ -26,8 +26,11 @@ public class StriderMainController {
 	@Loggable
 	private Logger log;
 
+	//@Autowired
+	//private StriderClimpingService striderSrv;
+	
 	@Autowired
-	private StriderClimpingService striderSrv;
+	private StridingServiceInteface striderSrv;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody StridesResponseVO climbToTopInMinimumStrides(@RequestParam(name = "sps", required = true) Integer sps,
@@ -43,8 +46,7 @@ public class StriderMainController {
 		} catch(UnableToStrideException utse) {
 			log.error("Fail to count. Cause: {}", utse.getMessage());
 			stridesRespVo.setMinimumStridesAmount(0);
-			stridesRespVo.setComment("Can not proceed with such paramters. Cause:" + utse.getMessage());
-			
+			stridesRespVo.setComment("Can not proceed with such paramters. Cause:" + utse.getMessage());			
 			return stridesRespVo;
 		}
 		

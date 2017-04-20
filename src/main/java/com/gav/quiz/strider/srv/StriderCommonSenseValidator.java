@@ -39,6 +39,7 @@ public class StriderCommonSenseValidator implements StriderValidator {
 
 		int flightCounter = 0;
 		for(Integer stepsInFlight : stairwell.getFlights()) {
+			flightCounter++;
 			if(stepsInFlight <= 0) {
 				throw new UnableToStrideException("Zero or negative steps in fligts [" + flightCounter + "] is not allowed.");
 			}
