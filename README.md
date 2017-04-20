@@ -25,11 +25,24 @@ A similar stairwell, but with 2 flights separated by a landing. 6 strides to the
 more strides to get to the top.
 * Input: {4,9,8,11,7,20,14}, StepsPerStride: 2, Returns: 50
 
-## Running
+## Running and usage
 
-A step by step series of examples that tell you have to get a development env running
+### From IDE:
+1. Import as Maven Project
+2. Maven Install
+3. Run StriderApplication
 
+### From CommandLine:
 
+Follow one of the following items:
+http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html
+
+## Usage
+
+When it's ran without any errors hit your browser with following URL pattern:
+http://localhost:8090/strider?sps=3&stairwell=2,5,6
+
+__NOTE: The default port has been switched to 8090 to prevent any conflicts__
 
 ## Built With
 
@@ -39,4 +52,4 @@ A step by step series of examples that tell you have to get a development env ru
 
 ## Authors
 
-* **Alex Gerasimenko** - *Initial work* - [PurpleBooth](https://github.com/zobarov)
+* **Alex Gerasimenko** - *Initial work* - [AlexGera](https://github.com/zobarov)
