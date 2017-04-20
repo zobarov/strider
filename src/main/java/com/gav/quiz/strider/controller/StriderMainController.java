@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.controller;
 
 import java.util.List;
@@ -20,8 +17,7 @@ import com.gav.quiz.strider.util.Loggable;
 import ch.qos.logback.classic.Logger;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @RestController
 @RequestMapping("/strider")

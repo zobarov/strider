@@ -1,18 +1,14 @@
-/**
- * 
- */
 package com.gav.quiz.strider.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 public class StairwellDTO {
 	private ArrayList<Integer> flights;
-	private Integer stepsOnFlightTurn = 2;
+	//private Integer stepsOnFlightTurn = 2;
 
 	public StairwellDTO() {
 		this.flights = new ArrayList<Integer>();

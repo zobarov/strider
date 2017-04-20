@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.util;
 
 import java.lang.reflect.Field;
@@ -14,8 +11,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.FieldCallback;
 
 /**
- * @author alexeygerasimenko
- *
+ * @author alex.gera
  */
 @Component
 public class LoggerPostProcessor implements BeanPostProcessor {

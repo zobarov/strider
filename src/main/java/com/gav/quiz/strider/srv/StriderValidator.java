@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.srv;
 
 import org.springframework.stereotype.Component;
@@ -8,8 +5,7 @@ import org.springframework.stereotype.Component;
 import com.gav.quiz.strider.dto.StairwellDTO;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @Component
 public interface StriderValidator {

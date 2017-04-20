@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.srv;
 
 import static org.junit.Assert.assertEquals;
@@ -17,8 +14,7 @@ import com.gav.quiz.strider.srv.cfg.StairwellConfig;
 import com.gav.quiz.strider.srv.cfg.StridesConfig;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

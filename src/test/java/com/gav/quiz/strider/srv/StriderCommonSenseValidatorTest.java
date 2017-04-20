@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.srv;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -24,8 +21,7 @@ import com.gav.quiz.strider.srv.cfg.StairwellConfig;
 import com.gav.quiz.strider.srv.cfg.StridesConfig;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

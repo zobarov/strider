@@ -9,6 +9,9 @@ import com.gav.quiz.strider.util.Loggable;
 
 import ch.qos.logback.classic.Logger;
 
+/**
+ * @author alex.gera
+ */
 @Service
 public class StriderClimpingService {
 	@Loggable

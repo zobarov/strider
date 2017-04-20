@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ * @author alex.gera
+ */
 //@EnableWebSecurity
 //@Configuration
 public class StriderBasicSecurityConfiguration extends WebSecurityConfigurerAdapter {

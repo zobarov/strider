@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.controller;
 
 import org.junit.Before;
@@ -21,8 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = StriderApplication.class)

@@ -1,14 +1,10 @@
-/**
- * 
- */
 package com.gav.quiz.strider.srv.cfg;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @Configuration
 public class StridesConfig {

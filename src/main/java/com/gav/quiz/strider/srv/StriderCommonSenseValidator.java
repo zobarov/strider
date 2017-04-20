@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.srv;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +8,7 @@ import com.gav.quiz.strider.srv.cfg.StairwellConfig;
 import com.gav.quiz.strider.srv.cfg.StridesConfig;
 
 /**
- * @author alex
- *
+ * @author alex.gera
  */
 @Component
 public class StriderCommonSenseValidator implements StriderValidator {

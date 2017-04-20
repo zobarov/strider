@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.util;
 
 import java.lang.annotation.Documented;
@@ -10,8 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author alexeygerasimenko
- *
+ * @author alex.gera
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD) 

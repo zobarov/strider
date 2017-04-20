@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gav.quiz.strider.util;
 
 import java.io.IOException;
@@ -14,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 /**
- * @author alexeygerasimenko
- *
+ * @author alex.gera
  */
 @Component
 public class SimpleCORSFilter implements Filter {
