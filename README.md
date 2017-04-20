@@ -18,10 +18,10 @@ The solution will calculate the minimum number of strides necessary to get to th
 ### Examples
 
 * Input: {17}, StepsPerStride: 3, Returns: 6
-A stairwell with a single flight of with 17 steps. In 5 strides, you've climbed 15 steps. You’ve two steps left to
+<br>A stairwell with a single flight of with 17 steps. In 5 strides, you've climbed 15 steps. You’ve two steps left to
 reach top, which you can cover in 1 stride.
 * Input: {17, 17}, StepsPerStride: 3, Returns: 14
-A similar stairwell, but with 2 flights separated by a landing. 6 strides to the landing, 2 strides to turn, and 6
+<br> A similar stairwell, but with 2 flights separated by a landing. 6 strides to the landing, 2 strides to turn, and 6
 more strides to get to the top.
 * Input: {4,9,8,11,7,20,14}, StepsPerStride: 2, Returns: 50
 
