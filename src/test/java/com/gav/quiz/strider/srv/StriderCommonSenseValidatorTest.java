@@ -30,30 +30,30 @@ import com.gav.quiz.strider.srv.cfg.StridesConfig;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:./app_common.test.properties")
-public class StriderCommonSenseValidatorTest {	
+public class StriderCommonSenseValidatorTest {
 	@Autowired
 	private StriderCommonSenseValidator validatorUnderTest;
-	
+
 	@Autowired
 	private StairwellConfig stairwellConfig;
 	@Autowired
 	private StridesConfig stridesConfig;
-	
+
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
-	
+
 	private int stsForStairwellInRange = 0;
 	private int stepsInFlightsInRange = 0;
-	
+
 	@Before
 	public void setUp() {
 		stsForStairwellInRange = new Random()
 				.nextInt((stridesConfig.maxStrides() - stridesConfig.minStrides()) + 1) + stridesConfig.minStrides();
-		
+
 		stepsInFlightsInRange = new Random()
 				.nextInt((stairwellConfig.maxStepsInFlightAmount() - stairwellConfig.minStepsInFlightAmount()) + 1) + stairwellConfig.minStepsInFlightAmount();
 	}
-	
+
 	///////////////Stairwell checks:
 
 	@Test
@@ -68,7 +68,7 @@ public class StriderCommonSenseValidatorTest {
 		//then:
 		assertTrue("In case of null stairwell should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldStairwell_BeAwareOfMinFlightsAmount() {
 		//given:
@@ -76,55 +76,55 @@ public class StriderCommonSenseValidatorTest {
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("less"));
-		
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("In case of none flights in stairwell should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldStairwell_BeAwareOfMaxFlightsAmount() {
-		//given:		
+		//given:
 		ArrayList<Integer> tempList = new ArrayList<Integer>(stairwellConfig.maxFlightAmount() + 1);
 		for(int i = 0; i <= stairwellConfig.maxFlightAmount() + 1; i++) {
-			tempList.add(i);			
+			tempList.add(i);
 		}
 		StairwellDTO stairwell = new StairwellDTO(tempList);
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("greater"));
-			
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("In case of enormous flights in stairwell should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldStairwell_BeOkForMaxFlightsAmount_Inclusively() {
 		//given:
 		StairwellDTO stairwell = new StairwellDTO();
 		for(int i = 0; i < stairwellConfig.maxFlightAmount(); i++) {
-			stairwell.addFlight(stepsInFlightsInRange);		
-		}		
+			stairwell.addFlight(stepsInFlightsInRange);
+		}
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive maximum to pass test with no exceptions.", true);
 	}
-	
+
 	@Test
 	public void shouldStrides_BeOkForMinFlightsAmount_Inclusively() {
 		//given:
 		StairwellDTO stairwell = new StairwellDTO();
 		for(int i = 0; i <= stairwellConfig.minFlightAmount(); i++) {
-			stairwell.addFlight(stepsInFlightsInRange);		
+			stairwell.addFlight(stepsInFlightsInRange);
 		}
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive minimum to pass test with no exceptions.", true);
 	}
-	
+
 	@Test
 	public void shouldStairwell_BeOkInRange() {
 		//given:
@@ -132,14 +132,14 @@ public class StriderCommonSenseValidatorTest {
 				.nextInt((stridesConfig.maxStrides() - stridesConfig.minStrides()) + 1) + stridesConfig.minStrides();
 		StairwellDTO stairwell = new StairwellDTO();
 		for(int i = 0; i <= flightsAmountInRange; i++) {
-			stairwell.addFlight(stepsInFlightsInRange);		
+			stairwell.addFlight(stepsInFlightsInRange);
 		}
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive in range to pass test with no exceptions.", true);
 	}
-	
+
 	///////////////Steps checks:
 	@Test
 	public void shouldSteps_ThrowIfZeroStepsFlight() {
@@ -156,7 +156,7 @@ public class StriderCommonSenseValidatorTest {
 		//then:
 		assertTrue("In case of Zero or negative steps in flights should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldSteps_ThrowIfNegativeStepsFlight() {
 		//given:
@@ -172,7 +172,7 @@ public class StriderCommonSenseValidatorTest {
 		//then:
 		assertTrue("In case of Zero or negative steps in flights should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeAwareOfMinFlightsAmount() {
 		//given:
@@ -183,15 +183,15 @@ public class StriderCommonSenseValidatorTest {
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		//expectedException.expectMessage(containsString("less"));  0 in common case here
-		
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("In case of less then minimum steps in a flight should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeAwareOfMaxFlightsAmount() {
-		//given:		
+		//given:
 		StairwellDTO stairwell = new StairwellDTO();
 		stairwell.addFlight(stepsInFlightsInRange);
 		stairwell.addFlight(stairwellConfig.maxStepsInFlightAmount() + 1);
@@ -199,34 +199,34 @@ public class StriderCommonSenseValidatorTest {
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("greater"));
-			
+
 		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
 		//then:
 		assertTrue("In case of greater then maximum steps in a flight should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeOkForMaxStepsInFlightsAmount_Inclusively() {
 		//given:
 		StairwellDTO stairwell = new StairwellDTO();
 		stairwell.addFlight(stairwellConfig.maxStepsInFlightAmount());
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive maximum to pass test with no exceptions.", true);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeOkForMinFlightsAmount_Inclusively() {
 		//given:
 		StairwellDTO stairwell = new StairwellDTO();
 		stairwell.addFlight(stairwellConfig.minStepsInFlightAmount());
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive minimum to pass test with no exceptions.", true);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeOkInRange_One() {
 		//given:
@@ -235,11 +235,11 @@ public class StriderCommonSenseValidatorTest {
 				.nextInt((stairwellConfig.maxStepsInFlightAmount() - stairwellConfig.minStepsInFlightAmount()) + 1) + stairwellConfig.minStepsInFlightAmount();
 		stairwell.addFlight(oneMoreStepsInRange);
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive in range to pass test with no exceptions.", true);
 	}
-	
+
 	@Test
 	public void shouldSteps_BeOkInRange_Max() {
 		//given:
@@ -247,17 +247,17 @@ public class StriderCommonSenseValidatorTest {
 		for(int i = 0; i < stairwellConfig.maxFlightAmount(); i++) {
 			int oneMoreStepsInRange = new Random()
 					.nextInt((stairwellConfig.maxStepsInFlightAmount() - stairwellConfig.minStepsInFlightAmount()) + 1) + stairwellConfig.minStepsInFlightAmount();
-			stairwell.addFlight(oneMoreStepsInRange);		
-		}	
+			stairwell.addFlight(oneMoreStepsInRange);
+		}
 		//when:
-		validatorUnderTest.validate(stairwell, stsForStairwellInRange);		
+		validatorUnderTest.validate(stairwell, stsForStairwellInRange);
 		//then:
 		assertTrue("Inclusive in range to pass test with no exceptions.", true);
 	}
-	
-	
-	///////////////Strides checks:	
-	
+
+
+	///////////////Strides checks:
+
 	@Test
 	public void shouldStrides_ThrowIfZeroStepsPerStride() {
 		//given:
@@ -266,12 +266,12 @@ public class StriderCommonSenseValidatorTest {
 		//when:
 		expectedException.expect(UnableToStrideException.class);
 		expectedException.expectMessage(containsString("zero"));
-			
+
 		validatorUnderTest.validate(stairwell, 0);		
 		//then:
 		assertTrue("In case of zero steps per stride should not be here.", false);
 	}
-	
+
 	@Test
 	public void shouldStrides_BeAwareOfMaxStepsPerStrideAmount() {
 		//given:

@@ -13,24 +13,24 @@ import ch.qos.logback.classic.Logger;
 public class StriderClimpingService {
 	@Loggable
 	private Logger log;
-	
+
 	@Autowired
 	private StriderValidator prerequisiteValidator;
 	@Autowired
 	private StridesConfig stridesConfig;
-	
+
 	public int climpToTheTop(StairwellDTO stairwell, int stepsPerStride) {
 		doValidation(stairwell, stepsPerStride);
-		
-		int flightCounter = 0;		
+
+		int flightCounter = 0;
 		int resultStepsAmount = 0;
-		
+
 		for(Integer stepsInFlight : stairwell.getFlights()) {
 			flightCounter++;
-			double stepsNeeded = (double) stepsInFlight / stepsPerStride;			
+			double stepsNeeded = (double) stepsInFlight / stepsPerStride;
 			int actualStepsNeededWithRerminder = (int) Math.ceil(stepsNeeded);
 			log.debug("Actual steps needed to pass flight {}: {} / {} = {}", flightCounter, stepsInFlight, stepsPerStride, actualStepsNeededWithRerminder);
-			
+
 			resultStepsAmount += actualStepsNeededWithRerminder;
 			//assuming a turn:
 			resultStepsAmount += stridesConfig.stridesToTurn();
@@ -39,14 +39,14 @@ public class StriderClimpingService {
 		if(resultStepsAmount > stridesConfig.stridesToTurn()) {
 			resultStepsAmount -= stridesConfig.stridesToTurn();
 		}
-		
+
 		return resultStepsAmount;
 	}
-	
+
 	public void setPreValidator(StriderValidator preValidator) {
 		this.prerequisiteValidator = preValidator;
 	}
-	
+
 	protected void doValidation(StairwellDTO stairwell, int stepsPerStride) {
 		if(prerequisiteValidator == null) {
 			log.warn("DISABLED Pre validation for StriderClimpingService.");

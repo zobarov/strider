@@ -12,5 +12,5 @@ public class StriderApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }
+

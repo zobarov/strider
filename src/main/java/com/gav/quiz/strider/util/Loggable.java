@@ -13,9 +13,10 @@ import java.lang.annotation.Target;
  * @author alexeygerasimenko
  *
  */
-@Retention(RetentionPolicy.RUNTIME) 
+@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD) 
 @Documented 
 public @interface Loggable {
  //for slf4j
-} 
+}
+

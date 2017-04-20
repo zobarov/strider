@@ -13,26 +13,22 @@ import java.util.List;
 public class StairwellDTO {
 	private ArrayList<Integer> flights;
 	private Integer stepsOnFlightTurn = 2;
-	
+
 	public StairwellDTO() {
 		this.flights = new ArrayList<Integer>();
 	}
-	
+
 	public StairwellDTO(List<Integer> flightsList) {
 		this.flights = new ArrayList<Integer>(flightsList.size());
 		flights.addAll(flightsList);
-	}	
-	
+	}
+
 	public List<Integer> getFlights() {
 		return flights;
 	}
 
-/*	public void setFligts(Integer[] flightsArray) {
-		this.flights = flightsArray;
-	}*/
-	
 	public void addFlight(Integer stepsInFlight) {
-		flights.add(stepsInFlight);		
+		flights.add(stepsInFlight);
 	}
 
 	@Override
@@ -42,5 +38,4 @@ public class StairwellDTO {
 		  .append("}");
 		return sb.toString();
 	}
-
 }

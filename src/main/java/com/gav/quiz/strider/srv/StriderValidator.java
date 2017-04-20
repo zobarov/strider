@@ -13,7 +13,15 @@ import com.gav.quiz.strider.dto.StairwellDTO;
  */
 @Component
 public interface StriderValidator {
-	
-	void validate(StairwellDTO stairwell, int stepsPerFlight) throws UnableToStrideException;
+
+	/**
+	 * Validates input parameters for {@link StriderClimpingService}.
+	 * In all invalid cases throws an {@link UnableToStrideException} to signal potential incorrect climbing.
+	 * 
+	 * @param stairwell DTO bean the target instance to validate.
+	 * @param stepsPerStride number the target instance to process
+	 * @throws UnableToStrideException
+	 */
+	void validate(StairwellDTO stairwell, int stepsPerStride) throws UnableToStrideException;
 
 }

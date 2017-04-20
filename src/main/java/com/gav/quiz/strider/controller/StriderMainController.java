@@ -28,15 +28,15 @@ import ch.qos.logback.classic.Logger;
 public class StriderMainController {
 	@Loggable
 	private Logger log;
-	
+
 	@Autowired
 	private StriderClimpingService striderSrv;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody String resp(@RequestParam(name="sps", required=true) Integer sps,
-									 @RequestParam(name="stairwell", required=true) List<Integer> stairwellFlights) {
+	public @ResponseBody String resp(@RequestParam(name = "sps", required = true) Integer sps,
+									 @RequestParam(name = "stairwell", required = true) List<Integer> stairwellFlights) {
 		log.info("Got a request to climb calculation for SPS={} and stairwell: {}", sps, stairwellFlights);
-		
+
 		int strideCount = 0;
 		try {
 			StairwellDTO stairwell = new StairwellDTO(stairwellFlights);

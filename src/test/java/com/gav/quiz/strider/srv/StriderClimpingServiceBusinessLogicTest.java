@@ -23,14 +23,14 @@ import com.gav.quiz.strider.srv.cfg.StridesConfig;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:./app_common.test.properties")
-public class StriderClimpingServiceBusinessLogicTest {	
+public class StriderClimpingServiceBusinessLogicTest {
 	@Autowired
-	private StriderClimpingService strideSrvUnderTest;	
+	private StriderClimpingService strideSrvUnderTest;
 	@Autowired
-	private StairwellConfig stairwellConfig;	
+	private StairwellConfig stairwellConfig;
 	@Autowired
 	private StridesConfig stridesConfig;
-	
+
 	//One flight:
 	@Test
 	public void shouldClimpOneFlight_MinStrides() {
@@ -42,7 +42,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Minimum steps flight should be passed in one stride.", 1, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpOneFlight_WithReminder() {
 		//given:
@@ -53,7 +53,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("For the reminder we need one extra step.", 6, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpOneFlight_WithNoReminder() {
 		//given:
@@ -64,7 +64,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("With no remined no any extra steps to be.", 5, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpOneFlight_ShorterThenStrideRange() {
 		//given:
@@ -75,7 +75,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Shorter then steps range flights should be passed in one step.", 1, actualStrideAmount);
 	}
-	
+
 	//Three flights:
 
 	@Test
@@ -90,7 +90,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Should be 2steps+2+4steps+2+3steps = 13", 13, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpThreeFlights_VariousReminders() {
 		//given:
@@ -103,7 +103,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Should be 7steps+2+1steps+2+5steps = 17", 17, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpThreeFlights_EqualFlights() {
 		//given:
@@ -116,7 +116,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Should be 1steps+2+1steps+2+1steps = 7", 7, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpThreeFlights_MaxStepsInFlights() {
 		//given:
@@ -129,7 +129,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Should be 7steps+2+7steps+2+7steps = 25", 25, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpThreeFlights_MinStepsInFlights() {
 		//given:
@@ -142,7 +142,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Should be 1steps+2+1steps+2+1steps = 7", 7, actualStrideAmount);
 	}
-	
+
 	//Boundaries flights:
 	@Test
 	public void shouldClimpBoundaires_MaxFligthsAndMaxSteps() {
@@ -151,13 +151,13 @@ public class StriderClimpingServiceBusinessLogicTest {
 		for(int i = 0; i < stairwellConfig.maxFlightAmount(); i++) { //30 flights
 			stairwell.addFlight(stairwellConfig.maxStepsInFlightAmount()); //per 20steps
 		}
-		
+
 		//when:
 		int actualStrideAmount = strideSrvUnderTest.climpToTheTop(stairwell, 3);
 		//then:
 		assertEquals("Should be 30f*7st + 29turns*2 = 268", 268, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpBoundaires_MaxFligthsAndMinSteps() {
 		//given:
@@ -165,13 +165,13 @@ public class StriderClimpingServiceBusinessLogicTest {
 		for(int i = 0; i < stairwellConfig.maxFlightAmount(); i++) { //30 flights
 			stairwell.addFlight(stairwellConfig.minStepsInFlightAmount()); //per 1steps
 		}
-		
+
 		//when:
 		int actualStrideAmount = strideSrvUnderTest.climpToTheTop(stairwell, 3);
 		//then:
 		assertEquals("Should be 30f*1st + 29turns*2 = 88", 88, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpBoundaires_MinFligthsAndMinSteps() {
 		//given:
@@ -179,13 +179,13 @@ public class StriderClimpingServiceBusinessLogicTest {
 		for(int i = 0; i < stairwellConfig.minFlightAmount(); i++) { //1 flights
 			stairwell.addFlight(stairwellConfig.minStepsInFlightAmount()); //per 1steps
 		}
-		
+
 		//when:
 		int actualStrideAmount = strideSrvUnderTest.climpToTheTop(stairwell, 3);
 		//then:
 		assertEquals("Should be 1f*1st + NO TURNS = 1", 1, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimpBoundaires_MinFligthsAndMaxSteps() {
 		//given:
@@ -193,13 +193,13 @@ public class StriderClimpingServiceBusinessLogicTest {
 		for(int i = 0; i < stairwellConfig.minFlightAmount(); i++) { //1 flights
 			stairwell.addFlight(stairwellConfig.maxStepsInFlightAmount()); //per 20steps
 		}
-		
+
 		//when:
 		int actualStrideAmount = strideSrvUnderTest.climpToTheTop(stairwell, 3);
 		//then:
 		assertEquals("Should be 1f*7st + no turns = 7", 7, actualStrideAmount);
 	}
-	
+
 	//////Outline examples:
 	@Test
 	public void shouldClimp_ExampleOne() {
@@ -211,7 +211,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Example One expecting strides amount = 6", 6, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimp_ExampleTwo() {
 		//given:
@@ -223,7 +223,7 @@ public class StriderClimpingServiceBusinessLogicTest {
 		//then:
 		assertEquals("Example Two expecting strides amount = 14", 14, actualStrideAmount);
 	}
-	
+
 	@Test
 	public void shouldClimp_ExampleThree() {
 		//given:
@@ -239,5 +239,5 @@ public class StriderClimpingServiceBusinessLogicTest {
 		int actualStrideAmount = strideSrvUnderTest.climpToTheTop(stairwell, 2);
 		//then:
 		assertEquals("Example Three expecting strides amount = 50", 50, actualStrideAmount);
-	}	
+	}
 }
