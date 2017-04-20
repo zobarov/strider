@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gav.quiz.strider.dto.StairwellDTO;
+import com.gav.quiz.strider.dto.StridesResponseVO;
 import com.gav.quiz.strider.srv.StriderClimpingService;
 import com.gav.quiz.strider.srv.UnableToStrideException;
 import com.gav.quiz.strider.util.Loggable;
@@ -29,20 +30,28 @@ public class StriderMainController {
 	private StriderClimpingService striderSrv;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody String resp(@RequestParam(name = "sps", required = true) Integer sps,
-									 @RequestParam(name = "stairwell", required = true) List<Integer> stairwellFlights) {
+	public @ResponseBody StridesResponseVO climbToTopInMinimumStrides(@RequestParam(name = "sps", required = true) Integer sps,
+									 								  @RequestParam(name = "stairwell", required = true) List<Integer> stairwellFlights) {
 		log.info("Got a request to climb calculation for SPS={} and stairwell: {}", sps, stairwellFlights);
+		
+		StridesResponseVO stridesRespVo = new StridesResponseVO();
 
-		int strideCount = 0;
+		int stridesAmount = 0;
 		try {
 			StairwellDTO stairwell = new StairwellDTO(stairwellFlights);
-			strideCount = striderSrv.climpToTheTop(stairwell, sps);
+			stridesAmount = striderSrv.climpToTheTop(stairwell, sps);
 		} catch(UnableToStrideException utse) {
 			log.error("Fail to count. Cause: {}", utse.getMessage());
-			return "Can not proceed with such paramters. Cause:" + utse.getMessage() + ".";
+			stridesRespVo.setMinimumStridesAmount(0);
+			stridesRespVo.setComment("Can not proceed with such paramters. Cause:" + utse.getMessage());
+			
+			return stridesRespVo;
 		}
-		log.info("Ok. Got minimum stride count: {}", strideCount);
-		return "Stariwell " + stairwellFlights + " at steps=" + sps + ". Minimum strides:" + strideCount;		
-	}
+		
+		log.debug("Ok. Got minimum stride count: {}", stridesAmount);
+		stridesRespVo.setMinimumStridesAmount(stridesAmount);
+		stridesRespVo.setComment("Stariwell " + stairwellFlights + " at steps=" + sps + ". Minimum strides:" + stridesAmount);
 
+		return stridesRespVo;		
+	}
 }
