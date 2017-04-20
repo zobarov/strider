@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gav.quiz.strider.srv;
+package com.gav.quiz.strider.srv.cfg;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class StridesConfig {
 	}
 	
 	public Integer stridesToTurn() {
-		return maxStrides;
+		return stridesToTurn;
 	}
 
 }

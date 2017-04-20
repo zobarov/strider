@@ -12,7 +12,7 @@ import com.gav.quiz.strider.dto.StairwellDTO;
  *
  */
 @Component
-public interface StrideValidator {
+public interface StriderValidator {
 	
 	void validate(StairwellDTO stairwell, int stepsPerFlight) throws UnableToStrideException;
 

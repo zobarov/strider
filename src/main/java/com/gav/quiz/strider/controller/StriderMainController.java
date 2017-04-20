@@ -6,8 +6,6 @@ package com.gav.quiz.strider.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gav.quiz.strider.dto.StairwellDTO;
-import com.gav.quiz.strider.srv.StrideCalculatorSrv;
+import com.gav.quiz.strider.srv.StriderClimpingService;
 import com.gav.quiz.strider.srv.UnableToStrideException;
 import com.gav.quiz.strider.util.Loggable;
 
@@ -32,7 +30,7 @@ public class StriderMainController {
 	private Logger log;
 	
 	@Autowired
-	private StrideCalculatorSrv striderSrv;
+	private StriderClimpingService striderSrv;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody String resp(@RequestParam(name="sps", required=true) Integer sps,
