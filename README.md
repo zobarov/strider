@@ -1,22 +1,87 @@
-#Climbing Stairs
+# Project Title
 
-##Problem:
-A stairwell has a number of flights of stairs separated by landings.
-Each flight is a straight line of steps that you can climb without stopping. You can
-stride more than one step at a time when climbing each flight.
-It takes two strides to turn on the landing and start again on next flight of stairs.
-As input, you are given an array listing the number of steps in each flight of stairs in the stairwell. You also
-receive the number of steps you can cover with each stride (you could climb 2 steps per stride, or 3 steps per
-stride if you were tall and fit).
-The stairwell has between 1 and 30 flights inclusive. Each flight can have a maximum of 20 steps. You can
-stride between 1 and 4 steps inclusive.
-The solution will calculate the minimum number of strides necessary to get to the top of the stairwell.
+One Paragraph of project description goes here
 
-##Examples:
-*Input: {17}, StepsPerStride: 3, Returns: 6
-A stairwell with a single flight of with 17 steps. In 5 strides, you've climbed 15 steps. You’ve two steps left to
-reach top, which you can cover in 1 stride.
-*Input: {17, 17}, StepsPerStride: 3, Returns: 14
-A similar stairwell, but with 2 flights separated by a landing. 6 strides to the landing, 2 strides to turn, and 6
-more strides to get to the top.
-*Input: {4,9,8,11,7,20,14}, StepsPerStride: 2, Returns: 50
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+Give examples
+```
+
+### Installing
+
+A step by step series of examples that tell you have to get a development env running
+
+Say what the step will be
+
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
